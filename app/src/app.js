@@ -5,59 +5,101 @@ define(function(require, exports, module) {
   var Engine = require('famous/core/Engine');
   var Backbone = require('backbone');
   var TestView = require('./views/test-view');
+  var Slide = require('./slide');
 
   Backbone.sync = function(method, model, success, error) {
     success();
   };
 
-  var Views = {
-    AUTH : 'app.auth',
-    FEED : 'app.feed'
-  };
 
   var App = Backbone.Router.extend({
     initialize: function(options) {
+      this.slides = {};
       this.mainContext = Engine.createContext();
       this.mainContext.setPerspective(1000);
 
-      this._viewCache = {};
+      Engine.on('keydown', function(e) {
+        if(!this._visibileSlide) return;
+        if (e.which === 39) this._visibileSlide.forward();
+        else if (e.which === 37) this._visibileSlide.backward();
+      }.bind(this));
 
-      Engine.on('resize', function() {
-        //console.log('Resize')
-        //self.background.setSize();
-      });
-      //this.mainContext.add(this.background.getView());
+      Engine.on('mouseup', function(e) {
+        if(!this._visibileSlide) return;
+        this._visibileSlide.forward();
+      }.bind(this));
+
     },
 
     routes: {
-      '' : 'showFeed',
-      'feed' : 'showFeed'
+      '' : 'slide1',
+      '1' : 'slide1',
+      '2' : 'slide2'
     },
 
-    showAuth: function() {
-      // compose options based on route params
-      var options = {};
-      this.scope.showView(Views.AUTH);
+    slide1: function(){
+      console.log('slide1')
+      var slide = this.fetchSlide(1);
+      if(!slide){
+        slide = require('./slides/cover');
+        this.loadSlide(slide, 1, true);
+      }
+
+      this.showSlide(slide);
     },
 
-    showFeed: function() {
-      var options = {};
-      this.showView(Views.FEED);
+    slide2: function(){
+
+      var slide = this.fetchSlide(2);
+
+      if(!slide){
+        slide = new Slide({
+          title: 'What is Famo.us?',
+          content: require('text!./slides/what.html')
+        });
+        this.loadSlide(slide, 2, false);
+      }
+
+      this.showSlide(slide);
+    },
+
+
+
+    fetchSlide: function(number){
+      return this.slides[number];
+    },
+
+    loadSlide: function(slide, number, next){
+      this.slides[number] = slide;
+      slide.config({
+        number: number,
+        next: next,
+        router: this
+      });
+      slide.hide();
+      this.mainContext.add(slide);
+    },
+
+    showSlide: function(slide) {
+      if(this._visibileSlide) this._visibileSlide.hide();
+
+      this._visibileSlide = slide;
+
+      slide.show();
+    },
+
+
+
+    start: function() {
+      Backbone.history.start({
+       pushState: false
+      });
+
+      //this.navigate('/1', {trigger: true, replace: true});
     }
 
   });
 
-  App.prototype.showView = function(viewId, options) {
-    this.mainContext.add(new TestView());
-  };
-
-  App.prototype.start = function() {
-    Backbone.history.start({
-     pushState: true
-    });
-
-    this.navigate('', {trigger: true, replace: true});
-  };
 
   module.exports = App;
 

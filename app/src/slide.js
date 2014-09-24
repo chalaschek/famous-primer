@@ -19,12 +19,15 @@ define(function(require, exports, module) {
 
     options = options || {};
 
+    this.topMod = new Modifier({});
+
+
     this.headFoot = new HeaderFooterLayout({
       headerSize: 100,
       footerSize: 50
     });
 
-    this.add(this.headFoot);
+    this.add(this.topMod).add(this.headFoot);
 
     this.title = options.title || 'title here';
     this.content = options.content || 'content here';
@@ -98,6 +101,31 @@ define(function(require, exports, module) {
   Slide.prototype.getContentController = function getContentController() {
     return this.contentControl;
   }
+
+  Slide.prototype.show = function(){
+    this.visible = true;
+    this.topMod.setOpacity(1);
+  }
+
+  Slide.prototype.hide = function(){
+    this.visible = false;
+    this.topMod.setOpacity(0);
+  }
+
+  Slide.prototype.config = function(options){
+    this.number = options.number;
+    this.next = options.next;
+    this.router = options.router;
+  }
+
+  Slide.prototype.forward = function(){
+    if(this.next) this.router.navigate('/' + (this.number+1), {trigger:true});
+  }
+
+  Slide.prototype.backward = function(){
+    if(this.number > 1) this.router.navigate('/' + (this.number - 1), {trigger:true});
+  }
+
 
   module.exports = Slide;
 });
