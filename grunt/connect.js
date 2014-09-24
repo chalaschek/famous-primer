@@ -1,6 +1,7 @@
 // The actual grunt server settings
 module.exports =  function (grunt) {
   'use strict';
+
   return {
     options: {
       port: grunt.option('port') || 1337,

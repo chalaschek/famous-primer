@@ -94,8 +94,6 @@ define(function(require, exports, module) {
       Backbone.history.start({
        pushState: false
       });
-
-      //this.navigate('/1', {trigger: true, replace: true});
     }
 
   });

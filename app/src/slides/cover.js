@@ -32,7 +32,7 @@ define(function(require, exports, module) {
 
 
   var slide = new Slide({
-    title: 'Project Lioneyes',
+    title: 'Don\'t Be A Lemming',
     contentView: contentView.call(this)
   })
 
