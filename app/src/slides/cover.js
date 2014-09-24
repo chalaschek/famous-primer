@@ -12,6 +12,7 @@ define(function(require, exports, module) {
   var initTime = Date.now();
 
   var contentView = function() {
+
     var view = new View();
     var transform = function(){
       return Transform.rotateY((Date.now() - initTime) * .002);
@@ -32,8 +33,9 @@ define(function(require, exports, module) {
 
 
   var slide = new Slide({
+    backgroundColor: "#ccc",
     title: 'Don\'t Be A Lemming',
-    contentView: contentView.call(this)
+    content: contentView.call(this)
   })
 
   module.exports = slide;

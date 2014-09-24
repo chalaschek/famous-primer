@@ -11,6 +11,82 @@ define(function(require, exports, module) {
     success();
   };
 
+  var slides = [
+    {
+      content: require('text!./slides/cover.html'),
+      classList: ['lemmings']
+    },
+    {
+      classList: ['what'],
+      content: require('text!./slides/what.html')
+    },
+    {
+      classList: ['guilty'],
+      content: require('text!./slides/guilty.html'),
+    },
+    {
+      classList: ['material-design'],
+      content: '',
+    },
+    {
+      classList: ['why'],
+      content: require('text!./slides/why.html'),
+    },
+    {
+      classList: ['faster'],
+      content: '',
+    },
+    {
+      classList: ['design'],
+      content: '',
+    },
+    {
+      classList: ['sketch'],
+      content: require('text!./slides/sketch.html'),
+    },
+
+    {
+      classList: ['css'],
+      content:''
+    },
+
+    {
+      classList: ['leaf'],
+      content: require('text!./slides/leaf.html'),
+    },
+
+
+    {
+      classList: ['javascript'],
+      content: require('text!./slides/javascript.html'),
+    },
+    {
+      classList: ['famous-1'],
+      content: require('text!./slides/famous-1.html'),
+    },
+    {
+      classList: ['famous-2'],
+      content: require('text!./slides/famous-2.html'),
+    },
+
+    {
+      classList: ['analytics'],
+      content: require('text!./slides/analytics.html'),
+    },
+    {
+      classList: ['fullstory'],
+      content: require('text!./slides/fullstory.html'),
+    },
+
+
+    {
+      content: require('text!./slides/cover.html'),
+      classList: ['lemmings']
+    }
+
+  ]
+  
+
 
   var App = Backbone.Router.extend({
     initialize: function(options) {
@@ -32,45 +108,32 @@ define(function(require, exports, module) {
     },
 
     routes: {
-      '' : 'slide1',
-      '1' : 'slide1',
-      '2' : 'slide2'
+      '*path' : 'slide'
     },
 
-    slide1: function(){
-      console.log('slide1')
-      var slide = this.fetchSlide(1);
-      if(!slide){
-        slide = require('./slides/cover');
-        this.loadSlide(slide, 1, true);
-      }
+    slide: function(){
+      var path = window.location.hash || "";
+      var num = path.substring(1) || 1;
+      num = parseInt(num);
 
-      this.showSlide(slide);
-    },
-
-    slide2: function(){
-
-      var slide = this.fetchSlide(2);
+      var slide = this.fetchSlide(num);
 
       if(!slide){
-        slide = new Slide({
-          title: 'What is Famo.us?',
-          content: require('text!./slides/what.html')
-        });
-        this.loadSlide(slide, 2, false);
+        var config = slides[num-1] || {};
+        slide = new Slide(config);
+
+        this.loadSlide(slide, num, true);
       }
-
       this.showSlide(slide);
+
     },
-
-
 
     fetchSlide: function(number){
-      return this.slides[number];
+      return this.slides[number-1];
     },
 
     loadSlide: function(slide, number, next){
-      this.slides[number] = slide;
+      this.slides[number-1] = slide;
       slide.config({
         number: number,
         next: next,

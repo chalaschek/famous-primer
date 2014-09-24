@@ -1,9 +1,162 @@
 html {
   font-family: 'Roboto', "HelveticaNeue", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  background: #fff;
+  background: gray;
+  background-color: #000000;
+  background-attachment: fixed;
+  background-position: 50% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/metal-background-60.jpg);
+
+}
+
+body{
+  -webkit-font-smoothing: initial;
 }
 
 .backfaceVisibility {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
+}
+
+
+.lemmings{
+  background-color: #000000;
+  background-attachment: fixed;
+  background-position: 50% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/FallingLemmings.jpg);
+}
+
+.lemmings div{
+  text-shadow: 1px 1px gray;
+  font-size: 60px;
+  height: 50px;
+  width: 800px;
+  text-align: center;
+  margin: auto;
+  top: 30%;
+  position: relative;
+  color: white;
+}
+
+.lemmings h1, .lemmings h2{
+  margin:0;
+  padding:0;
+}
+
+.what{
+  background-color: #ccc;
+  font-size: 35px;
+  font-weight: bolder;
+  background-color: #000000;
+  background-attachment: fixed;
+  background-position: 50% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/Athena-Dawn-Copy-cats-w-Life-With.jpg);
+  
+}
+
+.content{
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 20%;
+}
+
+.content div{
+  margin-top: 40px;
+}
+
+
+.guilty{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.material-design{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/google-material1.png);
+}
+
+.why{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/why.png);
+}
+
+.why h2{
+  font-size: 50px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+.faster{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/RUA2_Screenshot_02.png);
+  background-box-shadow: 10px 10px 5px #888888;
+}
+
+
+.design{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/desi.jpg);
+}
+
+.javascript{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/javascript.png);
+}
+
+.javascript h2{
+  font-size: 50px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+.css{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/17-Minimal-CSS-Frameworks-Grid-Systems-for-Web-Developers.jpg);
+}
+
+.analytics{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/shutterstock_160050128_analytics_techvoize.png);
+}
+
+.analytics h2{
+  font-size: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
