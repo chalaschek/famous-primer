@@ -8,10 +8,17 @@ define(function(require, exports, module) {
   var Modifier          = require('famous/core/Modifier');
   var EventHandler      = require('famous/core/EventHandler');
   var InputSurface      = require('famous/surfaces/InputSurface');
+  var Transform = require('famous/core/Transform');
   var Flipper = require('famous/views/Flipper');
   var View = require('famous/core/View');
+  var Easing = require('famous/transitions/Easing');
+
   var RenderController = require('famous/views/RenderController');
   var HeaderFooterLayout = require('famous/views/HeaderFooterLayout');
+
+  var StateModifier = require('famous/modifiers/StateModifier');
+
+  var Utils = require('./utils');
 
   function Slide(options) {
 
@@ -19,7 +26,9 @@ define(function(require, exports, module) {
 
     options = options || {};
 
-    this.topMod = new Modifier({});
+    this.topMod = new StateModifier({
+      origin: [0.5,0.5]
+    });
 
 
     this.headFoot = new HeaderFooterLayout({
@@ -102,14 +111,41 @@ define(function(require, exports, module) {
     return this.contentControl;
   }
 
-  Slide.prototype.show = function(){
-    this.visible = true;
-    this.topMod.setOpacity(1);
+  Slide.prototype.show = function(forward, callback){
+    callback = callback || function(){};
+
+    this.topMod.setTransform(
+      Transform.rotateY(Utils.degToRadians(forward ? -160 : 160)),
+      { duration : 0, curve: Easing.outBack }
+    );
+
+    this.opacity(1);
+
+    this.topMod.setTransform(
+      Transform.rotateY(Utils.degToRadians(0)),
+      { duration : 500, curve: Easing.outBack },
+      callback
+    );
   }
 
-  Slide.prototype.hide = function(){
-    this.visible = false;
-    this.topMod.setOpacity(0);
+
+
+
+  Slide.prototype.hide = function(forward, callback){
+    callback = callback || function(){};
+
+    this.topMod.setTransform(
+      Transform.rotateY(Utils.degToRadians(forward ? 160 : -160)),
+      { duration : 500, curve: Easing.outBack },
+      function(){
+        this.opacity(0);
+        callback();
+      }.bind(this)
+    );
+  }
+
+  Slide.prototype.opacity = function(val){
+    this.topMod.setOpacity(val);
   }
 
   Slide.prototype.config = function(options){

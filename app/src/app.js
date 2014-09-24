@@ -76,16 +76,21 @@ define(function(require, exports, module) {
         next: next,
         router: this
       });
-      slide.hide();
+      slide.opacity(0);
       this.mainContext.add(slide);
     },
 
     showSlide: function(slide) {
-      if(this._visibileSlide) this._visibileSlide.hide();
 
-      this._visibileSlide = slide;
+      var forward = this._visibileSlide && this._visibileSlide.number > slide.number ? false : true;
 
-      slide.show();
+      function _show(){
+        this._visibileSlide = slide;
+        slide.show( forward );
+      }
+
+      if(this._visibileSlide) return this._visibileSlide.hide(forward, _show.call(this));
+      _show.call(this);
     },
 
 
