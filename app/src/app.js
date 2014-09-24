@@ -16,7 +16,7 @@ define(function(require, exports, module) {
     initialize: function(options) {
       this.slides = {};
       this.mainContext = Engine.createContext();
-      this.mainContext.setPerspective(1000);
+      this.mainContext.setPerspective(10000);
 
       Engine.on('keydown', function(e) {
         if(!this._visibileSlide) return;

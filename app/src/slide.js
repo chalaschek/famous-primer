@@ -119,11 +119,14 @@ define(function(require, exports, module) {
       { duration : 0, curve: Easing.outBack }
     );
 
-    this.opacity(1);
-
+    this.topMod.setOpacity(
+      1,
+      { duration : 700 }
+    );
+    
     this.topMod.setTransform(
       Transform.rotateY(Utils.degToRadians(0)),
-      { duration : 500, curve: Easing.outBack },
+      { duration : 800, curve: Easing.outBack },
       callback
     );
   }
@@ -134,13 +137,15 @@ define(function(require, exports, module) {
   Slide.prototype.hide = function(forward, callback){
     callback = callback || function(){};
 
+    this.topMod.setOpacity(
+      0,
+      { duration : 200 }
+    );
+
     this.topMod.setTransform(
       Transform.rotateY(Utils.degToRadians(forward ? 160 : -160)),
-      { duration : 500, curve: Easing.outBack },
-      function(){
-        this.opacity(0);
-        callback();
-      }.bind(this)
+      { duration : 800, curve: Easing.outBack },
+      callback
     );
   }
 
