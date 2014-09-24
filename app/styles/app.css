@@ -160,3 +160,31 @@ body{
   text-align: center;
   margin-top: 50px;
 }
+
+
+.refine{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../content/images/featured7@wdd2x.jpg);
+}
+
+
+.refine h2{
+  font-size: 50px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+.twitter{
+  background-color: #fff;
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  background-image: url(../content/images/Twitter_logo_blue.png);
+}

@@ -77,7 +77,14 @@ define(function(require, exports, module) {
       classList: ['fullstory'],
       content: require('text!./slides/fullstory.html'),
     },
-
+    {
+      classList: ['refine'],
+      content: '<h2>Test & Refine</h2>',
+    },
+    {
+      classList: ['twitter'],
+      content: '',
+    },
 
     {
       content: require('text!./slides/cover.html'),
