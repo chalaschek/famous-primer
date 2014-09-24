@@ -1,0 +1,36 @@
+{
+  "name": "clearosity-beta-splash",
+  "description": "Clearosity Beta Splash Webpage",
+  "version": "0.1.0",
+  "homepage": "https://github.com/clearosity/beta",
+  "authors": [{
+    "name": "Chris Halaschek",
+    "url": "http://github.com/chalaschek/"
+  }],
+  "main": "app/index.html",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "famo.us"
+  ],
+  "license": "ISC",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "src/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.11",
+    "almond": "~0.2.9",
+    "famous-polyfills": "git+https://github.com/Famous/polyfills.git#0.1.1",
+    "famous": "~0.2.2",
+    "underscore": "1.6.0",
+    "jquery" : "2.1.1",
+    "backbone": "1.1.2",
+    "text": "2.0.12"
+  }
+}

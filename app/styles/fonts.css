@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://themes.googleusercontent.com/static/fonts/roboto/v9/vzIUHo9z-oJ4WgkpPOtg13YhjbSpvc47ee6xR_80Hnw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(https://themes.googleusercontent.com/static/fonts/roboto/v9/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}
+
+
+@font-face {
+  font-family: 'Sansation';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Sansation Light'), local('Sansation-Light'), url(../fonts/sansation/Sansation_Light.ttf) format('ttf');
+}
