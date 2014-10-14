@@ -1,4 +1,4 @@
-famous-primer
+ux-lemming
 ======
 
-Famo.us Primer
+UX Lemming Talk
