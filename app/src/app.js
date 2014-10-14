@@ -42,7 +42,12 @@ define(function(require, exports, module) {
     },
     {
       classList: ['sketch'],
-      content: require('text!./slides/sketch.html'),
+      content: require('text!./slides/sketch.html')
+    },
+
+    {
+      classList: ['jc'],
+      content: require('text!./slides/jc.html')
     },
 
     {
@@ -112,6 +117,12 @@ define(function(require, exports, module) {
         this._visibileSlide.forward();
       }.bind(this));
 
+      // var idx = 1;
+      // slides.forEach(function(cfg){
+      //   this.loadSlide(idx);
+      //   idx++;
+      // }.bind(this))
+
     },
 
     routes: {
@@ -126,10 +137,7 @@ define(function(require, exports, module) {
       var slide = this.fetchSlide(num);
 
       if(!slide){
-        var config = slides[num-1] || {};
-        slide = new Slide(config);
-
-        this.loadSlide(slide, num, true);
+        slide = this.loadSlide(num);
       }
       this.showSlide(slide);
 
@@ -139,15 +147,18 @@ define(function(require, exports, module) {
       return this.slides[number-1];
     },
 
-    loadSlide: function(slide, number, next){
+    loadSlide: function(number){
+      var config = slides[number-1] || {};
+      var slide = new Slide(config);
       this.slides[number-1] = slide;
       slide.config({
         number: number,
-        next: next,
+        next: true,
         router: this
       });
       slide.opacity(0);
       this.mainContext.add(slide);
+      return slide;
     },
 
     showSlide: function(slide) {
